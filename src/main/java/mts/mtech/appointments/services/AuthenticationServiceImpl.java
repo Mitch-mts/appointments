@@ -1,5 +1,6 @@
 package mts.mtech.appointments.services;
 
+import lombok.extern.slf4j.Slf4j;
 import mts.mtech.appointments.domain.User;
 import mts.mtech.appointments.dto.LoginRequest;
 import mts.mtech.appointments.dto.RegisterUser;
@@ -10,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
+@Slf4j
 public class AuthenticationServiceImpl implements AuthenticationService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
@@ -23,10 +25,15 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public User signup(RegisterUser registerUser) {
+        if(!registerUser.getPassword().equals(registerUser.getConfirmPassword())) {
+            throw new IllegalArgumentException("Passwords do not match");
+        }
+
         User user = new User();
         user.setEmail(registerUser.getEmail());
         user.setFullName(registerUser.getFullName());
         user.setPassword(passwordEncoder.encode(registerUser.getPassword()));
+        user.setRole("CLIENT");
 
         return userRepository.save(user);
     }

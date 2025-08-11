@@ -1,5 +1,6 @@
 package mts.mtech.appointments.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -28,15 +29,28 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String password;
 
+    @Column
+    private String role;
+
+    @JsonFormat(pattern = "dd MMM yyyy : HH:mm:ss")
     @CreationTimestamp
     @Column(updatable = false, name = "created_at")
     private Date createdAt;
 
+    @JsonFormat(pattern = "dd MMM yyyy : HH:mm:ss")
     @UpdateTimestamp
     @Column(name = "updated_at")
     private Date updatedAt;
 
     public User() {
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     @Override
