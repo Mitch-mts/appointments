@@ -14,5 +14,6 @@ public interface AppointmentsService {
     List<Appointments> getAllAppointmentsForUser(String email);
     List<Appointments> getAllAppointmentsByStatus(BookingStatus status, String email);
     Appointments getAppointmentByReferenceNumber(String referenceNumber);
+    Appointments getAppointmentById(Long id);
 
 }

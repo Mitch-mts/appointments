@@ -10,6 +10,7 @@ import mts.mtech.appointments.persistence.AppointmentsRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Random;
 
 @Service
 @Slf4j
@@ -27,8 +28,19 @@ public class AppointmentsServiceImpl implements AppointmentsService {
         appointments.setBookedTime(request.getBookedTime());
         appointments.setFullName(request.getFullName());
         appointments.setEmail(request.getEmail());
+        appointments.setReferenceNumber(generateReferenceNumber());
 
         return appointmentsRepository.save(appointments);
+    }
+
+    private static String generateReferenceNumber() {
+        final String values = "0123456789qwertyuioplkjhgfdsazxcvbnmQWERTYUIOPLKJHGFDSAZXCVBNM";
+        final Random random = new Random();
+        char[] refNumber = new char[7];
+        for (int i = 0; i < 7; i++) {
+            refNumber[i] = values.charAt(random.nextInt(values.length()));
+        }
+        return new String(refNumber);
     }
 
     @Override
@@ -69,6 +81,12 @@ public class AppointmentsServiceImpl implements AppointmentsService {
     public Appointments getAppointmentByReferenceNumber(String referenceNumber) {
         return appointmentsRepository.findAppointmentsByReferenceNumber(referenceNumber)
                 .orElseThrow(() -> new RecordNotFoundException("Appointment Record not found with reference number: " + referenceNumber));
+    }
+
+    @Override
+    public Appointments getAppointmentById(Long id) {
+        return appointmentsRepository.findById(id)
+                .orElseThrow(()-> new RecordNotFoundException("Appointment Record not found"));
     }
 
 }

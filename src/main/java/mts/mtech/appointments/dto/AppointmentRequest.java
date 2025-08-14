@@ -8,18 +8,24 @@ public class AppointmentRequest {
     private String email;
     private LocalDate bookedDate;
     private LocalTime bookedTime;
+    private String additionalNotes;
 
     public AppointmentRequest() {
     }
-
-    public AppointmentRequest(String fullName,
-                              String email,
-                              LocalDate bookedDate,
-                              LocalTime bookedTime) {
+    public AppointmentRequest(String fullName, String email, LocalDate bookedDate, LocalTime bookedTime, String additionalNotes) {
         this.fullName = fullName;
         this.email = email;
         this.bookedDate = bookedDate;
         this.bookedTime = bookedTime;
+        this.additionalNotes = additionalNotes;
+    }
+
+    public String getAdditionalNotes() {
+        return additionalNotes;
+    }
+
+    public void setAdditionalNotes(String additionalNotes) {
+        this.additionalNotes = additionalNotes;
     }
 
     public String getFullName() {

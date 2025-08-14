@@ -1,6 +1,7 @@
 package mts.mtech.appointments.api;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import mts.mtech.appointments.domain.User;
 import mts.mtech.appointments.services.UserService;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/v1/users")
+@Tag(name = "User Account API", description = "Api for managing user account")
 @CrossOrigin
 public class UserController {
     private final UserService userService;

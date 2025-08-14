@@ -1,6 +1,7 @@
 package mts.mtech.appointments.api;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.Builder;
 import mts.mtech.appointments.domain.User;
 import mts.mtech.appointments.dto.LoginRequest;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/v1/auth")
+@Tag(name = "Authentication API", description = "Api for authentication and authorisation")
 @CrossOrigin
 public class AuthenticationController {
     private final JwtService jwtService;
