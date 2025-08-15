@@ -15,18 +15,6 @@ public class UpdateAppointmentRequest {
     public UpdateAppointmentRequest() {
     }
 
-    public UpdateAppointmentRequest(String fullName,
-                                    String email,
-                                    LocalDate bookedDate,
-                                    LocalTime bookedTime,
-                                    BookingStatus bookingStatus) {
-        this.fullName = fullName;
-        this.email = email;
-        this.bookedDate = bookedDate;
-        this.bookedTime = bookedTime;
-        this.bookingStatus = bookingStatus;
-    }
-
     public String getFullName() {
         return fullName;
     }
