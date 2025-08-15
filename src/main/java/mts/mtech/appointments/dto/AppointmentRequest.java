@@ -1,25 +1,17 @@
 package mts.mtech.appointments.dto;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 
 public class AppointmentRequest {
     private String fullName;
     private String email;
-    private LocalDate bookedDate;
-    private LocalTime bookedTime;
-    private String additionalNotes;
+    private String date;
+    private String time;
+    private String notes;
 
     public AppointmentRequest() {
     }
 
-    public String getAdditionalNotes() {
-        return additionalNotes;
-    }
 
-    public void setAdditionalNotes(String additionalNotes) {
-        this.additionalNotes = additionalNotes;
-    }
 
     public String getFullName() {
         return fullName;
@@ -37,29 +29,27 @@ public class AppointmentRequest {
         this.email = email;
     }
 
-    public LocalDate getBookedDate() {
-        return bookedDate;
+    public String getDate() {
+        return date;
     }
 
-    public void setBookedDate(LocalDate bookedDate) {
-        this.bookedDate = bookedDate;
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    public LocalTime getBookedTime() {
-        return bookedTime;
+    public String getTime() {
+        return time;
     }
 
-    public void setBookedTime(LocalTime bookedTime) {
-        this.bookedTime = bookedTime;
+    public void setTime(String time) {
+        this.time = time;
     }
 
-    @Override
-    public String toString() {
-        return "AppointmentRequest{" +
-                "fullName='" + fullName + '\'' +
-                ", email='" + email + '\'' +
-                ", bookedDate=" + bookedDate +
-                ", bookedTime=" + bookedTime +
-                '}';
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 }

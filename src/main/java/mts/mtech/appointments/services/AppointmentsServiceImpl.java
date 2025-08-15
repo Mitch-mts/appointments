@@ -9,6 +9,12 @@ import mts.mtech.appointments.exceptions.RecordNotFoundException;
 import mts.mtech.appointments.persistence.AppointmentsRepository;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -23,14 +29,34 @@ public class AppointmentsServiceImpl implements AppointmentsService {
 
     @Override
     public Appointments createAppointment(AppointmentRequest request) {
-        Appointments appointments = new  Appointments();
-        appointments.setBookedDate(request.getBookedDate());
-        appointments.setBookedTime(request.getBookedTime());
+        Appointments appointments = new Appointments();
+        appointments.setBookedDate(convertToDate(request.getDate()));
+        appointments.setBookedTime(convertToTime(request.getTime()));
         appointments.setFullName(request.getFullName());
         appointments.setEmail(request.getEmail());
         appointments.setReferenceNumber(generateReferenceNumber());
+        appointments.setNotes(request.getNotes());
+        appointments.setBookingStatus(BookingStatus.PENDING);
 
         return appointmentsRepository.save(appointments);
+    }
+
+    public static LocalDate convertToDate(String date) {
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            return LocalDate.parse(date, formatter);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Invalid date provided");
+        }
+    }
+
+    public static LocalTime convertToTime(String date) {
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+            return LocalTime.parse(date, formatter);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Invalid date provided");
+        }
     }
 
     private static String generateReferenceNumber() {

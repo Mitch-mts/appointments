@@ -19,7 +19,7 @@ public class Appointments implements Serializable {
     private String fullName;
     @Column
     private String email;
-    @JsonFormat(pattern = "dd MMM yyyy")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @Column
     private LocalDate bookedDate;
     @JsonFormat(pattern = "HH:mm")
@@ -29,24 +29,10 @@ public class Appointments implements Serializable {
     private BookingStatus bookingStatus;
     @Column
     private String referenceNumber;
+    @Column
+    private String notes;
 
     public Appointments() {
-    }
-
-    public Appointments(Long id,
-                        String fullName,
-                        String email,
-                        LocalDate bookedDate,
-                        LocalTime bookedTime,
-                        BookingStatus bookingStatus,
-                        String referenceNumber) {
-        this.id = id;
-        this.fullName = fullName;
-        this.email = email;
-        this.bookedDate = bookedDate;
-        this.bookedTime = bookedTime;
-        this.bookingStatus = bookingStatus;
-        this.referenceNumber = referenceNumber;
     }
 
     public Long getId() {
@@ -105,6 +91,14 @@ public class Appointments implements Serializable {
         this.referenceNumber = referenceNumber;
     }
 
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
     @Override
     public String toString() {
         return "Appointments{" +
@@ -115,6 +109,7 @@ public class Appointments implements Serializable {
                 ", bookedTime=" + bookedTime +
                 ", bookingStatus=" + bookingStatus +
                 ", referenceNumber='" + referenceNumber + '\'' +
+                ", notes='" + notes + '\'' +
                 '}';
     }
 }
