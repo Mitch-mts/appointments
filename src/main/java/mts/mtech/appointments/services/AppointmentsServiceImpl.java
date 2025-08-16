@@ -115,4 +115,9 @@ public class AppointmentsServiceImpl implements AppointmentsService {
                 .orElseThrow(()-> new RecordNotFoundException("Appointment Record not found"));
     }
 
+    @Override
+    public void deleteAppointment(Long id) {
+        appointmentsRepository.deleteById(id);
+    }
+
 }

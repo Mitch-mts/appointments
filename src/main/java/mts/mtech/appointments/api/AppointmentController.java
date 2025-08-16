@@ -74,4 +74,10 @@ public class AppointmentController {
                 appointmentsService.getAllAppointmentsForUser(email));
     }
 
+    @DeleteMapping("/delete/{id}")
+    @Operation(summary = "Delete appointment", description = "API deletes an appointment by id")
+    public ResponseWrapper<String> deleteAppointment(@PathVariable Long id) {
+        appointmentsService.deleteAppointment(id);
+        return new ResponseWrapper<String>().buildSuccessResponse(Constants.SUCCESS, "Appointment deleted successfully");
+    }
 }
